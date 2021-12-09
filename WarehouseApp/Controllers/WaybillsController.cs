@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseApp.Models;
 using PagedList;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 namespace WarehouseApp.Views
 {
@@ -92,11 +94,27 @@ namespace WarehouseApp.Views
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "WaybillNumber,Warehouse_WarehouseNumber,EntertDate")] Waybill waybill)
         {
+
             if (ModelState.IsValid)
             {
-                db.Waybill.Add(waybill);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Waybill.Add(waybill);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbUpdateException ex )
+                {
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator." + ex);
+                }
+                catch (SqlException ex1)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "dsfdgsdfhdfghfhvcnbxgfhxgf, " +
+                        "see your system administrator." + ex1);
+                }
             }
 
             ViewBag.Warehouse_WarehouseNumber = new SelectList(db.Warehouse, "WarehouseNumber", "Storekeeper", waybill.Warehouse_WarehouseNumber);

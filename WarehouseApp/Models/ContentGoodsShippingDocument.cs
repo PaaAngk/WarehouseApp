@@ -11,12 +11,24 @@ namespace WarehouseApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ContentGoodsShippingDocument
     {
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Номер должен быть положительным числом")]
         public int idContentGoodsShippingDocument { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Номер должен быть положительным числом")]
         public int ShippingDocument_ShippingDocumentNumber { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "{0} длина должна быть между {2} и {1}.", MinimumLength = 2)]
         public string Goods_GoodsName { get; set; }
+
+        [Required]
+        [Range(0, 255, ErrorMessage = "Номер должен быть положительным числом до 255")]
         public Nullable<byte> QuantityGoods { get; set; }
     
         public virtual Goods Goods { get; set; }
