@@ -1,0 +1,51 @@
+﻿@model WarehouseApp.Models.Waybill
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Waybill @Html.DisplayFor(model => model.WaybillNumber)</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.WaybillNumber)
+
+        <div class="form-group mb-2">
+            @Html.LabelFor(model => model.Warehouse_WarehouseNumber, "WarehouseNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Warehouse_WarehouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Warehouse_WarehouseNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            @Html.LabelFor(model => model.EntertDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EntertDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EntertDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

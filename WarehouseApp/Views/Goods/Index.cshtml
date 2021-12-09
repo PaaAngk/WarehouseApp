@@ -1,0 +1,74 @@
+﻿@model PagedList.IPagedList<WarehouseApp.Models.Goods>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Goods @Html.ActionLink("Create New", "Create", null, null, new { @class = "btn btn-grad" })</h2>
+
+
+<div class="alert alert-info">
+    @using (Html.BeginForm("Index", "Goods", FormMethod.Get))
+    {
+        <div class="row mb-3">
+            <div class="col-auto">
+                <div class="input-group">
+                    <div class="input-group-text">Find by goods name:</div>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "Goods name" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-grad col-auto">Filter</button>
+        </div>
+    }
+    @using (Html.BeginForm("Index", "Goods", FormMethod.Get))
+    {
+        <input type="submit" class="btn btn-grad" value="Clear filter" />
+    }
+</div>
+
+@if (Model.PageCount == 0)
+{
+    <div class="alert alert-danger text-center" role="alert">
+        <h1>No results found ¯\_(ツ)_/¯</h1>
+    </div>
+}
+
+@if (Model.PageCount != 0)
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Price
+            </th>
+            <th>Function</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr >
+                <th>
+                    @Html.DisplayFor(modelItem => item.GoodsName)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GoodsPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GoodsName }, new { @class = "btn btn-secondary" }) 
+                    @Html.ActionLink("Details", "Details", new { id = item.GoodsName }, new { @class = "btn btn-info" }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.GoodsName }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<hr />
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

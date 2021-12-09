@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5622a7a9b295420c955d3e0d0fa2632d" Name="Diagram1">
+        <EntityTypeShape EntityType="MyDBModel.ContentGoodsShippingDocument" Width="1.5" PointX="5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDBModel.ContentGoodsWaybill" Width="1.5" PointX="5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDBModel.Goods" Width="1.5" PointX="8.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDBModel.ShippingDocument" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDBModel.Warehouse" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDBModel.Waybill" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="MyDBModel.FK__ContentGo__Goods__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDBModel.FK__ContentGo__Shipp__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDBModel.FK__ContentGo__Goods__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDBModel.FK__ContentGo__Waybi__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDBModel.FK__ShippingD__Wareh__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDBModel.FK__Waybill__Warehou__25869641" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

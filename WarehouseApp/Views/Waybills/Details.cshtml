@@ -1,0 +1,30 @@
+﻿@model WarehouseApp.Models.Waybill
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Waybill @Html.DisplayFor(model => model.WaybillNumber)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            @Html.DisplayNameFor(model => model.EntertDate):
+        </b>
+            @Html.DisplayFor(model => model.EntertDate)
+
+    <br />
+        <b>
+            @Html.DisplayNameFor(model => model.Warehouse.Storekeeper):
+        </b>
+
+            @Html.DisplayFor(model => model.Warehouse.Storekeeper)
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WaybillNumber }, new { @class = "btn btn-primary mb-2" }) <br />
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>

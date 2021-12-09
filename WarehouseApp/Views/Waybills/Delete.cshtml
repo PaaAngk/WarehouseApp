@@ -1,0 +1,35 @@
+﻿@model WarehouseApp.Models.Waybill
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete waybill @Html.DisplayFor(model => model.WaybillNumber)</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            @Html.DisplayNameFor(model => model.EntertDate):
+        </b>
+            @Html.DisplayFor(model => model.EntertDate)
+        <br />
+        <b>
+            @Html.DisplayNameFor(model => model.Warehouse.Storekeeper):
+        </b>
+
+            @Html.DisplayFor(model => model.Warehouse.Storekeeper)
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary mb-2" /> <br />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

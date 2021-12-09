@@ -1,0 +1,22 @@
+﻿@model WarehouseApp.Models.Goods
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details goods @Html.DisplayFor(model => model.GoodsName)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            Price:
+        </b>
+            @Html.DisplayFor(model => model.GoodsPrice)
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GoodsName }, new { @class = "btn btn-primary mb-2" }) <br />
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>

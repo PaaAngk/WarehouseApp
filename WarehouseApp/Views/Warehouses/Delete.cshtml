@@ -1,0 +1,31 @@
+﻿@model WarehouseApp.Models.Warehouse
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete warehouse @Html.DisplayFor(model => model.WarehouseNumber)</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            @Html.DisplayNameFor(model => model.Storekeeper):
+        </b>
+            @Html.DisplayFor(model => model.Storekeeper)
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary mb-2" />
+
+        </div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+    }
+</div>

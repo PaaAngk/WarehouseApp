@@ -1,0 +1,34 @@
+﻿@model WarehouseApp.Models.ContentGoodsWaybill
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details content goods in waybill @Html.DisplayFor(model => model.idContentGoodsWaybill)</h2>
+
+<div>
+    <h4>ContentGoodsWaybill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            Quantity of goods:
+        </b>
+        @Html.DisplayFor(model => model.QuantityGoods)
+        <br />
+        <b>
+            Goods name:
+        </b>
+        @Html.DisplayFor(model => model.Goods.GoodsName)
+        <br />
+
+        <b>
+            Waybill number:
+        </b>
+        @Html.DisplayFor(model => model.Waybill.WaybillNumber)
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idContentGoodsWaybill }, new { @class = "btn btn-primary mb-2" }) <br />
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - warehouse application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar pb-0 mb-2 navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="nav nav-tabs">
+                    <!--ViewContext.RouteData.Values["Controller"].ToString() == "ShippingDocuments"-->
+                    <!--<li class="nav-item">@Html.ActionLink("Home page", "Index", "Home", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("") ? "nav-link active" : "nav-link" })</li>-->
+                    <li class="nav-item">@Html.ActionLink("Warehouse", "Index", "Warehouses", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/") ? "nav-link active" : "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Goods", "Index", "Goods", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/Goods") ? "nav-link active" : "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Waybill", "Index", "Waybills", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/Waybills") ? "nav-link active" : "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Shipping Documents", "Index", "ShippingDocuments", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/ShippingDocuments") ? "nav-link active" : "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Content goods in shipping documents", "Index", "ContentGoodsShippingDocuments", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/ContentGoodsShippingDocuments") ? "nav-link active" : "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Content goods in waybills", "Index", "ContentGoodsWaybills", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/ContentGoodsWaybills") ? "nav-link active" : "nav-link" })</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - warehouse application!</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>

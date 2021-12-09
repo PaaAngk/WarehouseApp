@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<WarehouseApp.Models.Waybill>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Waybills @Html.ActionLink("Create new", "Create", null, null, new { @class = "btn btn-grad" })</h2>
+
+@if (Model.PageCount == 0)
+{
+    <div class="alert alert-danger text-center" role="alert">
+        <h1>No results found ¯\_(ツ)_/¯</h1>
+    </div>
+}
+
+@if (Model.PageCount != 0)
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.ActionLink("Number", "Index", new { sortOrder = ViewBag.NumberSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Warehouse number
+            </th>
+            <th>
+                @Html.ActionLink("Entert date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>Function</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WaybillNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Warehouse_WarehouseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EntertDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.WaybillNumber }, new { @class = "btn btn-secondary" }) 
+                    @Html.ActionLink("Details", "Details", new { id = item.WaybillNumber }, new { @class = "btn btn-info" }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.WaybillNumber }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+<hr />
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

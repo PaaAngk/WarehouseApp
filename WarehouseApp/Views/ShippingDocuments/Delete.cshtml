@@ -1,0 +1,34 @@
+﻿@model WarehouseApp.Models.ShippingDocument
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete shipping document @Html.DisplayFor(model => model.ShippingDocumentNumber)</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            @Html.DisplayNameFor(model => model.UnloadingDate):
+        </b>
+
+            @Html.DisplayFor(model => model.UnloadingDate)
+        <br />
+        <b>
+            @Html.DisplayNameFor(model => model.Warehouse.Storekeeper):
+        </b>
+            @Html.DisplayFor(model => model.Warehouse.Storekeeper)
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary mb-2" /> <br />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

@@ -1,0 +1,28 @@
+﻿@model WarehouseApp.Models.ShippingDocument
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details shipping document @Html.DisplayFor(model => model.ShippingDocumentNumber)</h2>
+
+<div>
+    <h4>ShippingDocument</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            @Html.DisplayNameFor(model => model.UnloadingDate):
+        </b>
+            @Html.DisplayFor(model => model.UnloadingDate)
+        <br />
+        <b>
+            @Html.DisplayNameFor(model => model.Warehouse.Storekeeper):
+        </b>
+            @Html.DisplayFor(model => model.Warehouse.Storekeeper)
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ShippingDocumentNumber }, new { @class = "btn btn-primary mb-2" }) <br />
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>

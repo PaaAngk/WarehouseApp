@@ -1,0 +1,32 @@
+﻿@model WarehouseApp.Models.ContentGoodsShippingDocument
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details content goods in shipping document @Html.DisplayFor(model => model.idContentGoodsShippingDocument)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>
+            Quantity of goods:
+        </b>
+        @Html.DisplayFor(model => model.QuantityGoods)
+        <br />
+        <b>
+            Goods name:
+        </b>
+        @Html.DisplayFor(model => model.Goods.GoodsName)
+        <br />
+        <b>
+            Shipping document number:
+        </b>
+        @Html.DisplayFor(model => model.ShippingDocument.ShippingDocumentNumber)
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idContentGoodsShippingDocument }, new { @class = "btn btn-primary mb-2" }) <br />
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>
