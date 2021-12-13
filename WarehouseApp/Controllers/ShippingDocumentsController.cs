@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseApp.Models;
 using PagedList;
-
+using System.Data.Entity.Infrastructure;
 
 namespace WarehouseApp.Views
 {
@@ -94,10 +94,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.ShippingDocument.Add(shippingDocument);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+            }
+        }
 
             ViewBag.Warehouse_WarehouseNumber = new SelectList(db.Warehouse, "WarehouseNumber", "Storekeeper", shippingDocument.Warehouse_WarehouseNumber);
             return View(shippingDocument);
@@ -128,9 +134,15 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
-                db.Entry(shippingDocument).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try { 
+                    db.Entry(shippingDocument).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+                }
             }
             ViewBag.Warehouse_WarehouseNumber = new SelectList(db.Warehouse, "WarehouseNumber", "Storekeeper", shippingDocument.Warehouse_WarehouseNumber);
             return View(shippingDocument);
@@ -156,9 +168,17 @@ namespace WarehouseApp.Views
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ShippingDocument shippingDocument = db.ShippingDocument.Find(id);
-            db.ShippingDocument.Remove(shippingDocument);
-            db.SaveChanges();
+            try { 
+                ShippingDocument shippingDocument = db.ShippingDocument.Find(id);
+                db.ShippingDocument.Remove(shippingDocument);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                ShippingDocument shippingDocument = db.ShippingDocument.Find(id);
+                TempData["msg"] = ex.InnerException.InnerException.Message;
+                return View(shippingDocument);
+            }
             return RedirectToAction("Index");
         }
 

@@ -11,8 +11,7 @@ namespace WarehouseApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ShippingDocument
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,17 +19,9 @@ namespace WarehouseApp.Models
         {
             this.ContentGoodsShippingDocument = new HashSet<ContentGoodsShippingDocument>();
         }
-
-        [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Номер должен быть положительным числом")]
+    
         public int ShippingDocumentNumber { get; set; }
-
-        [Required]
-        [Range(0, Int16.MaxValue, ErrorMessage = "Номер должен быть положительным числом")]
         public short Warehouse_WarehouseNumber { get; set; }
-
-        [DataType(DataType.Date)]
-        [Required]
         public Nullable<System.DateTime> UnloadingDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

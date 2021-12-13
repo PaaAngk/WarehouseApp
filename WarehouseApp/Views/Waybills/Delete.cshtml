@@ -10,21 +10,23 @@
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <hr />
+    <b class="text-danger mb-2">@Html.Raw(TempData["msg"])</b>
     <dl class="dl-horizontal">
         <b>
             @Html.DisplayNameFor(model => model.EntertDate):
         </b>
-            @Html.DisplayFor(model => model.EntertDate)
+        @Html.DisplayFor(model => model.EntertDate)
         <br />
         <b>
-            @Html.DisplayNameFor(model => model.Warehouse.Storekeeper):
+            @Html.DisplayNameFor(model => model.Warehouse.WarehouseNumber):
         </b>
 
-            @Html.DisplayFor(model => model.Warehouse.Storekeeper)
+        @Html.DisplayFor(model => model.Warehouse.WarehouseNumber)
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

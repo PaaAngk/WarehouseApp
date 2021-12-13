@@ -10,14 +10,15 @@
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <hr />
+    <b class="text-danger mb-2">@Html.Raw(TempData["msg"])</b>
+
     <dl class="dl-horizontal">
         <b>
             @Html.DisplayNameFor(model => model.Storekeeper):
         </b>
-            @Html.DisplayFor(model => model.Storekeeper)
+        @Html.DisplayFor(model => model.Storekeeper)
 
     </dl>
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()

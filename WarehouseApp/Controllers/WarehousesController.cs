@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseApp.Models;
 using PagedList;
+using System.Data.Entity.Infrastructure;
+using System.Web.UI;
 
 namespace WarehouseApp.Views
 {
@@ -94,9 +96,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
-                db.Warehouse.Add(warehouse);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {                              
+                    db.Warehouse.Add(warehouse);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+                }
             }
 
             return View(warehouse);
@@ -126,10 +135,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
-                db.Entry(warehouse).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                try {
+                    db.Entry(warehouse).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+                }
+        }
             return View(warehouse);
         }
 
@@ -153,9 +168,17 @@ namespace WarehouseApp.Views
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(short id)
         {
-            Warehouse warehouse = db.Warehouse.Find(id);
-            db.Warehouse.Remove(warehouse);
-            db.SaveChanges();
+            try { 
+                Warehouse warehouse = db.Warehouse.Find(id);
+                db.Warehouse.Remove(warehouse);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                Warehouse warehouse = db.Warehouse.Find(id);
+                TempData["msg"] = ex.InnerException.InnerException.Message;              
+                return View(warehouse);
+            }
             return RedirectToAction("Index");
         }
 

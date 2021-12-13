@@ -485,21 +485,17 @@ namespace WarehouseApp.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateContentGoodsWaybill", idContentGoodsWaybillParameter, setidContentGoodsWaybillParameter, waybillNumberParameter, goodsNameParameter, quantGoodsParameter);
         }
     
-        public virtual int UpdateGoods(string name, string setName, Nullable<short> price)
+        public virtual int UpdateGoods(string name, Nullable<short> price)
         {
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
     
-            var setNameParameter = setName != null ?
-                new ObjectParameter("SetName", setName) :
-                new ObjectParameter("SetName", typeof(string));
-    
             var priceParameter = price.HasValue ?
                 new ObjectParameter("Price", price) :
                 new ObjectParameter("Price", typeof(short));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateGoods", nameParameter, setNameParameter, priceParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateGoods", nameParameter, priceParameter);
         }
     
         public virtual int UpdateShippingDocument(Nullable<int> shippingDocumentNumber, Nullable<int> setShippingDocument, Nullable<short> warehouseNumber, Nullable<System.DateTime> unlDate)
@@ -523,21 +519,17 @@ namespace WarehouseApp.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateShippingDocument", shippingDocumentNumberParameter, setShippingDocumentParameter, warehouseNumberParameter, unlDateParameter);
         }
     
-        public virtual int UpdateWarehouse(Nullable<short> number, Nullable<short> setNumber, string setStorekeeper)
+        public virtual int UpdateWarehouse(Nullable<short> number, string setStorekeeper)
         {
             var numberParameter = number.HasValue ?
                 new ObjectParameter("Number", number) :
                 new ObjectParameter("Number", typeof(short));
     
-            var setNumberParameter = setNumber.HasValue ?
-                new ObjectParameter("SetNumber", setNumber) :
-                new ObjectParameter("SetNumber", typeof(short));
-    
             var setStorekeeperParameter = setStorekeeper != null ?
                 new ObjectParameter("SetStorekeeper", setStorekeeper) :
                 new ObjectParameter("SetStorekeeper", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateWarehouse", numberParameter, setNumberParameter, setStorekeeperParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateWarehouse", numberParameter, setStorekeeperParameter);
         }
     
         public virtual int UpdateWaybill(Nullable<int> waybillNumber, Nullable<int> setWaybillNumber, Nullable<short> warehouseNumber, Nullable<System.DateTime> entDate)

@@ -11,8 +11,7 @@ namespace WarehouseApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Goods
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,14 +20,8 @@ namespace WarehouseApp.Models
             this.ContentGoodsShippingDocument = new HashSet<ContentGoodsShippingDocument>();
             this.ContentGoodsWaybill = new HashSet<ContentGoodsWaybill>();
         }
-
-        [Required]
-        [StringLength(50, ErrorMessage = "{0} длина должна быть между {2} и {1}.", MinimumLength = 2)]
+    
         public string GoodsName { get; set; }
-
-        [Required]
-        [Range(50, 500, ErrorMessage = "Недопустимая цена. Цена должна быть между 50 и 500")]
-        [DataType(DataType.Currency)]
         public Nullable<short> GoodsPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

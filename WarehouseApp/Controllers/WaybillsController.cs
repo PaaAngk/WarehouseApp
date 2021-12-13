@@ -103,18 +103,17 @@ namespace WarehouseApp.Views
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                catch (DbUpdateException ex )
+                catch (DbUpdateException ex)
+                {
+                    var sqlException = ex.InnerException.InnerException.Message;
+                    ModelState.AddModelError("","Error: "+ sqlException);           
+                }
+                /*catch (DbUpdateException ex )
                 {
                     ModelState.AddModelError("", "Unable to save changes. " +
                         "Try again, and if the problem persists, " +
                         "see your system administrator." + ex);
-                }
-                catch (SqlException ex1)
-                {
-                    ModelState.AddModelError("", "Unable to save changes. " +
-                        "dsfdgsdfhdfghfhvcnbxgfhxgf, " +
-                        "see your system administrator." + ex1);
-                }
+                }*/
             }
 
             ViewBag.Warehouse_WarehouseNumber = new SelectList(db.Warehouse, "WarehouseNumber", "Storekeeper", waybill.Warehouse_WarehouseNumber);
@@ -146,8 +145,14 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.Entry(waybill).State = EntityState.Modified;
                 db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.Warehouse_WarehouseNumber = new SelectList(db.Warehouse, "WarehouseNumber", "Storekeeper", waybill.Warehouse_WarehouseNumber);
@@ -174,9 +179,18 @@ namespace WarehouseApp.Views
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Waybill waybill = db.Waybill.Find(id);
-            db.Waybill.Remove(waybill);
-            db.SaveChanges();
+            try
+            {
+                Waybill waybill = db.Waybill.Find(id);
+                db.Waybill.Remove(waybill);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                Waybill waybill = db.Waybill.Find(id);
+                TempData["msg"] = ex.InnerException.InnerException.Message;
+                return View(waybill);
+            }
             return RedirectToAction("Index");
         }
 

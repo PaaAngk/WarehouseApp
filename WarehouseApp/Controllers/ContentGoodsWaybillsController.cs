@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseApp.Models;
 using PagedList;
+using System.Data.Entity.Infrastructure;
 
 namespace WarehouseApp.Views
 {
@@ -62,10 +63,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.ContentGoodsWaybill.Add(contentGoodsWaybill);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+            }
+        }
 
             ViewBag.Goods_GoodsName = new SelectList(db.Goods, "GoodsName", "GoodsName", contentGoodsWaybill.Goods_GoodsName);
             ViewBag.Waybill_WaybillNumber = new SelectList(db.Waybill, "WaybillNumber", "WaybillNumber", contentGoodsWaybill.Waybill_WaybillNumber);
@@ -98,10 +105,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.Entry(contentGoodsWaybill).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+            }
+        }
             ViewBag.Goods_GoodsName = new SelectList(db.Goods, "GoodsName", "GoodsName", contentGoodsWaybill.Goods_GoodsName);
             ViewBag.Waybill_WaybillNumber = new SelectList(db.Waybill, "WaybillNumber", "WaybillNumber", contentGoodsWaybill.Waybill_WaybillNumber);
             return View(contentGoodsWaybill);
@@ -127,9 +140,16 @@ namespace WarehouseApp.Views
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            try { 
             ContentGoodsWaybill contentGoodsWaybill = db.ContentGoodsWaybill.Find(id);
             db.ContentGoodsWaybill.Remove(contentGoodsWaybill);
             db.SaveChanges();
+        }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+                }
+
             return RedirectToAction("Index");
         }
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище MyDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище MyDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ContentGoodsShippingDocument">
           <Key>
             <PropertyRef Name="idContentGoodsShippingDocument" />
@@ -270,7 +270,6 @@
         </Function>
         <Function Name="UpdateGoods" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Name" Type="varchar" Mode="In" />
-          <Parameter Name="SetName" Type="varchar" Mode="In" />
           <Parameter Name="Price" Type="smallint" Mode="In" />
         </Function>
         <Function Name="UpdateShippingDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -281,7 +280,6 @@
         </Function>
         <Function Name="UpdateWarehouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Number" Type="smallint" Mode="In" />
-          <Parameter Name="SetNumber" Type="smallint" Mode="In" />
           <Parameter Name="SetStorekeeper" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UpdateWaybill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -323,8 +321,7 @@
             <End Role="Waybill" EntitySet="Waybill" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -510,38 +507,38 @@
             <Parameter Name="RowsToInsertContentGoodsShippingDocument" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AutoCompleteContentGoodsShippingDocument">
-            <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
+          <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AutoCompleteContentGoodsWaybill">
-            <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
+          <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AutoCompleteGoods" />
           <FunctionImport Name="AutoCompleteShippingDocument">
-            <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
+          <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AutoCompleteWarehouse">
-            <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
+          <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AutoCompleteWaybill">
-            <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
+          <Parameter Name="RowsToInsert" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteContentGoodsShippingDocument">
-            <Parameter Name="idContentGoods" Mode="In" Type="Int32" />
+          <Parameter Name="idContentGoods" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteContentGoodsWaybill">
-            <Parameter Name="idContentGoods" Mode="In" Type="Int32" />
+          <Parameter Name="idContentGoods" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteGoods">
-            <Parameter Name="Name" Mode="In" Type="String" />
+          <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteShippingDocument">
-            <Parameter Name="ShipDocNumber" Mode="In" Type="Int32" />
+          <Parameter Name="ShipDocNumber" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteWarehouse">
-            <Parameter Name="Number" Mode="In" Type="Int16" />
+          <Parameter Name="Number" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="DeleteWaybill">
-            <Parameter Name="WaybNumber" Mode="In" Type="Int32" />
+          <Parameter Name="WaybNumber" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="InsertContentGoodsShippingDocument">
             <Parameter Name="idContentGoods" Mode="In" Type="Int32" />
@@ -574,7 +571,7 @@
             <Parameter Name="EntDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="listGoodsQuant" ReturnType="Collection(MyDBModel.listGoodsQuant_Result)">
-            <Parameter Name="date" Mode="In" Type="DateTime" />
+          <Parameter Name="date" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SelectContentGoodsShippingDocument" ReturnType="Collection(MyDBModel.SelectContentGoodsShippingDocument_Result)" />
           <FunctionImport Name="SelectContentGoodsWaybill" ReturnType="Collection(MyDBModel.SelectContentGoodsWaybill_Result)" />
@@ -584,7 +581,7 @@
           <FunctionImport Name="SelectWarehouseWaybill" ReturnType="Collection(MyDBModel.SelectWarehouseWaybill_Result)" />
           <FunctionImport Name="SelectWaybill" ReturnType="Collection(MyDBModel.SelectWaybill_Result)" />
           <FunctionImport Name="SelectWaybillGoods" ReturnType="Collection(String)">
-            <Parameter Name="WaybillNumber" Mode="In" Type="Int16" />
+          <Parameter Name="WaybillNumber" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="SortGoodsOnDate" ReturnType="Collection(String)">
             <Parameter Name="preDate" Mode="In" Type="DateTime" />
@@ -636,7 +633,6 @@
           </FunctionImport>
           <FunctionImport Name="UpdateGoods">
             <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="SetName" Mode="In" Type="String" />
             <Parameter Name="Price" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="UpdateShippingDocument">
@@ -647,7 +643,6 @@
           </FunctionImport>
           <FunctionImport Name="UpdateWarehouse">
             <Parameter Name="Number" Mode="In" Type="Int16" />
-            <Parameter Name="SetNumber" Mode="In" Type="Int16" />
             <Parameter Name="SetStorekeeper" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UpdateWaybill">
@@ -780,7 +775,6 @@
                 </InsertFunction>
                 <UpdateFunction FunctionName="Хранилище MyDBModel.UpdateGoods" >
                   <ScalarProperty Name="GoodsPrice" ParameterName="Price" Version="Current" />
-                  <ScalarProperty Name="GoodsName" ParameterName="SetName" Version="Current" />
                   <ScalarProperty Name="GoodsName" ParameterName="Name" Version="Current" />
                 </UpdateFunction>
                 <DeleteFunction FunctionName="Хранилище MyDBModel.DeleteGoods" >
@@ -840,14 +834,13 @@
                   <ScalarProperty Name="Storekeeper" ParameterName="Keeper" />
                   <ScalarProperty Name="WarehouseNumber" ParameterName="Number" />
                 </InsertFunction>
-                <UpdateFunction FunctionName="Хранилище MyDBModel.UpdateWarehouse" >
-                  <ScalarProperty Name="Storekeeper" ParameterName="SetStorekeeper" Version="Current" />
-                  <ScalarProperty Name="WarehouseNumber" ParameterName="SetNumber" Version="Current" />
-                  <ScalarProperty Name="WarehouseNumber" ParameterName="Number" Version="Current" />
-                </UpdateFunction>
                 <DeleteFunction FunctionName="Хранилище MyDBModel.DeleteWarehouse" >
                   <ScalarProperty Name="WarehouseNumber" ParameterName="Number" />
                 </DeleteFunction>
+                <UpdateFunction FunctionName="Хранилище MyDBModel.UpdateWarehouse" >
+                  <ScalarProperty Name="Storekeeper" ParameterName="SetStorekeeper" Version="Current" />
+                  <ScalarProperty Name="WarehouseNumber" ParameterName="Number" Version="Current" />
+                </UpdateFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>

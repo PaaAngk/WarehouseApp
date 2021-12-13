@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseApp.Models;
 using PagedList;
-
+using System.Data.Entity.Infrastructure;
 
 namespace WarehouseApp.Views
 {
@@ -93,10 +93,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.Goods.Add(goods);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+            }
+        }
 
             return View(goods);
         }
@@ -125,10 +131,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.Entry(goods).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+            }
+        }
             return View(goods);
         }
 
@@ -152,9 +164,17 @@ namespace WarehouseApp.Views
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Goods goods = db.Goods.Find(id);
-            db.Goods.Remove(goods);
-            db.SaveChanges();
+            try { 
+                Goods goods = db.Goods.Find(id);
+                db.Goods.Remove(goods);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                Goods goods = db.Goods.Find(id);
+                TempData["msg"] = ex.InnerException.InnerException.Message;
+                return View(goods);
+            }
             return RedirectToAction("Index");
         }
 

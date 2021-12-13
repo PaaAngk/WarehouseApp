@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WarehouseApp.Models;
 using PagedList;
+using System.Data.Entity.Infrastructure;
 
 namespace WarehouseApp.Views
 {
@@ -60,10 +61,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.ContentGoodsShippingDocument.Add(contentGoodsShippingDocument);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+            }
+        }
 
             ViewBag.Goods_GoodsName = new SelectList(db.Goods, "GoodsName", "GoodsName", contentGoodsShippingDocument.Goods_GoodsName);
             ViewBag.ShippingDocument_ShippingDocumentNumber = new SelectList(db.ShippingDocument, "ShippingDocumentNumber", "ShippingDocumentNumber", contentGoodsShippingDocument.ShippingDocument_ShippingDocumentNumber);
@@ -96,10 +103,16 @@ namespace WarehouseApp.Views
         {
             if (ModelState.IsValid)
             {
+                try { 
                 db.Entry(contentGoodsShippingDocument).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+            }
+        }
             ViewBag.Goods_GoodsName = new SelectList(db.Goods, "GoodsName", "GoodsName", contentGoodsShippingDocument.Goods_GoodsName);
             ViewBag.ShippingDocument_ShippingDocumentNumber = new SelectList(db.ShippingDocument, "ShippingDocumentNumber", "ShippingDocumentNumber", contentGoodsShippingDocument.ShippingDocument_ShippingDocumentNumber);
             return View(contentGoodsShippingDocument);
@@ -125,9 +138,16 @@ namespace WarehouseApp.Views
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            try { 
             ContentGoodsShippingDocument contentGoodsShippingDocument = db.ContentGoodsShippingDocument.Find(id);
             db.ContentGoodsShippingDocument.Remove(contentGoodsShippingDocument);
             db.SaveChanges();
+        }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Error: " + ex.InnerException.InnerException.Message);
+                }
+
             return RedirectToAction("Index");
         }
 

@@ -19,8 +19,8 @@
                     <li class="nav-item">@Html.ActionLink("Goods", "Index", "Goods", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/Goods") ? "nav-link active" : "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Waybill", "Index", "Waybills", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/Waybills") ? "nav-link active" : "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Shipping Documents", "Index", "ShippingDocuments", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/ShippingDocuments") ? "nav-link active" : "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Content goods in shipping documents", "Index", "ContentGoodsShippingDocuments", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/ContentGoodsShippingDocuments") ? "nav-link active" : "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Content goods in waybills", "Index", "ContentGoodsWaybills", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/ContentGoodsWaybills") ? "nav-link active" : "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Content goods in shipping documents", "Index", "ContentGoodsShippingDocuments", new { area = "" }, new { @class = Request.Url.GetLeftPart(UriPartial.Path).Equals("https://localhost:44308/ContentGoodsShippingDocuments") ? "nav-link active" : "nav-link" })</li>
                 </ul>
                 </div>
             </div>
