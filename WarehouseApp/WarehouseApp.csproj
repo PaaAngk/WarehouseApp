@@ -132,6 +132,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SortGoodsOnDateController.cs" />
+    <Compile Include="Controllers\ListGoodsQuantController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -326,6 +328,10 @@
     <Content Include="Views\ContentGoodsWaybills\Details.cshtml" />
     <Content Include="Views\ContentGoodsWaybills\Edit.cshtml" />
     <Content Include="Views\ContentGoodsWaybills\Index.cshtml" />
+    <Content Include="Views\ListGoodsQuant\Details.cshtml" />
+    <Content Include="Views\ListGoodsQuant\Index.cshtml" />
+    <Content Include="Views\SortGoodsOnDate\Details.cshtml" />
+    <Content Include="Views\SortGoodsOnDate\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

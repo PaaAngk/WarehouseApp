@@ -651,6 +651,10 @@
             <Parameter Name="WarehouseNumber" Mode="In" Type="Int16" />
             <Parameter Name="EntDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="SortGoodsOnDate1">
+            <Parameter Name="preDate" Mode="In" Type="DateTime" />
+            <Parameter Name="postDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="listGoodsQuant_Result">
           <Property Type="Int16" Name="WarehouseNumber" Nullable="false" />
@@ -979,6 +983,7 @@
           <FunctionImportMapping FunctionImportName="UpdateShippingDocument" FunctionName="Хранилище MyDBModel.UpdateShippingDocument" />
           <FunctionImportMapping FunctionImportName="UpdateWarehouse" FunctionName="Хранилище MyDBModel.UpdateWarehouse" />
           <FunctionImportMapping FunctionImportName="UpdateWaybill" FunctionName="Хранилище MyDBModel.UpdateWaybill" />
+          <FunctionImportMapping FunctionImportName="SortGoodsOnDate1" FunctionName="Хранилище MyDBModel.SortGoodsOnDate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<WarehouseApp.Models.listGoodsQuant_Result>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List quantity of goods</h2>
+
+<div class="alert alert-info">
+    @using (Html.BeginForm("Details", "ListGoodsQuant", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-auto">
+                <div class="input-group">
+                    <div class="input-group-text">Find before date:</div>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "Date" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-grad col-auto">Filter</button>
+        </div>
+    }
+</div>
+
+@if (!TempData["msg"].Equals(""))
+{
+    <div class="alert alert-danger text-center" role="alert">
+        <h1>No results found ¯\_(ツ)_/¯</h1>
+    </div>
+}
+
+@if (TempData["msg"].Equals(""))
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Warehouse number
+            </th>
+            <th>
+                Goods name
+            </th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.WarehouseNumber)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GoodsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <p>Page @(Model.PageCount< Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+    <hr />
+    @Html.PagedListPager(Model, page => Url.Action("Details",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+}
+

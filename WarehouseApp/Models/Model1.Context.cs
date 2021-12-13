@@ -552,5 +552,18 @@ namespace WarehouseApp.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateWaybill", waybillNumberParameter, setWaybillNumberParameter, warehouseNumberParameter, entDateParameter);
         }
+    
+        public virtual int SortGoodsOnDate1(Nullable<System.DateTime> preDate, Nullable<System.DateTime> postDate)
+        {
+            var preDateParameter = preDate.HasValue ?
+                new ObjectParameter("preDate", preDate) :
+                new ObjectParameter("preDate", typeof(System.DateTime));
+    
+            var postDateParameter = postDate.HasValue ?
+                new ObjectParameter("postDate", postDate) :
+                new ObjectParameter("postDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SortGoodsOnDate1", preDateParameter, postDateParameter);
+        }
     }
 }

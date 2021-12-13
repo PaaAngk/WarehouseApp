@@ -1,0 +1,26 @@
+﻿<!---model PagedList.IPagedList<WarehouseApp.Models.listGoodsQuant_Result>
+using PagedList.Mvc;-->
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List quantity of goods</h2>
+
+<div class="alert alert-info">
+    @using (Html.BeginForm("Details", "ListGoodsQuant", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-auto">
+                <div class="input-group">
+                    <div class="input-group-text">Find before date:</div>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "Date" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-grad col-auto">Filter</button>
+        </div>
+    }
+</div>
+

@@ -11,8 +11,11 @@ namespace WarehouseApp.Models
 {
     using System;
     
-    public partial class SelectGoods_Result
+    public partial class listGoodsQuant_Result
     {
+        public short WarehouseNumber { get; set; }
         public string GoodsName { get; set; }
+        public Nullable<int> Quant { get; set; }
+        public Nullable<int> Price { get; set; }
     }
 }

@@ -1,0 +1,65 @@
+﻿@model PagedList.IPagedList<WarehouseApp.Models.SelectGoods_Result>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sort goods on date</h2>
+
+<div class="alert alert-info">
+    @using (Html.BeginForm("Details", "SortGoodsOnDate", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-auto">
+                <div class="input-group">
+                    <div class="input-group-text">Find before date:</div>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "Before date" })
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="input-group">
+                    <div class="input-group-text">Find after date:</div>
+                    @Html.TextBox("SearchString1", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "After date" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-grad col-auto">Filter</button>
+        </div>
+    }
+</div>
+
+@if (!TempData["msg"].Equals(""))
+{
+    <div class="alert alert-danger text-center" role="alert">
+        <h1>No results found ¯\_(ツ)_/¯</h1>
+    </div>
+}
+
+@if (TempData["msg"].Equals(""))
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Goods name
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.GoodsName)
+                </th>
+            </tr>
+        }
+
+    </table>
+
+    <p>Page @(Model.PageCount< Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+    <hr />
+    @Html.PagedListPager(Model, page => Url.Action("Details",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, currentFilter1 = ViewBag.CurrentFilter1 }))
+}
+
