@@ -36,12 +36,6 @@ namespace WarehouseApp.Views
             ViewBag.CurrentFilter = searchString;
 
             var waybill = db.Waybill.Include(w => w.Warehouse);
-            //var waybill = from s in db.Waybill select s;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                //waybill = waybill.Where(s => s.Warehouse.Contains(searchString));
-            }
 
             switch (sortOrder)
             {
@@ -61,7 +55,6 @@ namespace WarehouseApp.Views
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(waybill.ToPagedList(pageNumber, pageSize));
-            //return View(waybill.ToList());
         }
 
 
@@ -87,9 +80,6 @@ namespace WarehouseApp.Views
             return View();
         }
 
-        // POST: Waybills/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "WaybillNumber,Warehouse_WarehouseNumber,EntertDate")] Waybill waybill)
@@ -108,12 +98,6 @@ namespace WarehouseApp.Views
                     var sqlException = ex.InnerException.InnerException.Message;
                     ModelState.AddModelError("","Error: "+ sqlException);           
                 }
-                /*catch (DbUpdateException ex )
-                {
-                    ModelState.AddModelError("", "Unable to save changes. " +
-                        "Try again, and if the problem persists, " +
-                        "see your system administrator." + ex);
-                }*/
             }
 
             ViewBag.Warehouse_WarehouseNumber = new SelectList(db.Warehouse, "WarehouseNumber", "Storekeeper", waybill.Warehouse_WarehouseNumber);
@@ -136,9 +120,6 @@ namespace WarehouseApp.Views
             return View(waybill);
         }
 
-        // POST: Waybills/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "WaybillNumber,Warehouse_WarehouseNumber,EntertDate")] Waybill waybill)
